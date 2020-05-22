@@ -1,11 +1,25 @@
 import tkinter
-from tkinter import *
+from tkinter import messagebox, Label, Button
 import tkinter.font as font
 import webbrowser
 import requests
 
 top = tkinter.Tk()
 top.geometry("500x500")
+def openweb():
+	webbrowser.open(url, new=new)
+	
+try:
+	response = requests.get("https://github.com/DeepakChakravarthy/Software-Updation/releases/tag/V1.0")
+	response.raise_for_status()
+	messagebox.showinfo("SoftwareUpdater", "Click Ok to Update")
+	new = 1
+	url = "https://github.com/DeepakChakravarthy/Software-Updation/releases/tag/V1.0"
+	openweb() 
+
+except requests.exceptions.HTTPError as err:
+	messagebox.showinfo("SoftwareUpdater","No New Upadates")
+
 myFont = font.Font(size=15)
 def openweb():
 	try:
